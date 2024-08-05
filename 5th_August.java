@@ -1,5 +1,6 @@
 // Bottom View of Binary Tree
 import java.util.*;
+
 class node {
     int data;
     node left;
@@ -12,8 +13,17 @@ class node {
     }
 }
 
+class pair {
+    node n;
+    int hd;
+
+    pair(node n, int hd) {
+        this.n = n;
+        this.hd = hd;
+    }
+}
 class bottomview {
-    public static node buildTree(In[] a) {
+    public static node buildTree(int[] a) {
         if (a.length == 0 || a[0] == -1) {
             return null;
         }
@@ -43,17 +53,20 @@ class bottomview {
             return l;
         }
         TreeMap<Integer, Integer> m = new TreeMap<>();
-        Queue<node> q = new LinkedList<>();
-        q.add(root);
+        Queue<pair> q = new LinkedList<>();
+        q.add(new pair(root, 0));
         while (!q.isEmpty()) {
-            node cur = q.poll();
-            int hd = 0; // horizontal distance
-            m.put(hd, cur.data);
+            pair p = q.poll();
+            node cur = p.n;
+            int hd = p.hd;
+
+
+            m.put(hd,cur.data);
             if (cur.left != null) {
-                q.add(cur.left);
+                q.add(new pair(cur.left, hd - 1));
             }
             if (cur.right != null) {
-                q.add(cur.right);
+                q.add(new pair(cur.right, hd+1));
             }
         }
         for (int i : m.values()) {
