@@ -8,7 +8,7 @@ class nMeetings {
             a[i][1] = end[i];
         }
         Arrays.sort(a, (x, y) -> x[1] - y[1]);
-        int s = a[0][0];
+        // int s = a[0][0];
         int c = 0;
         int e = a[0][1];
         for (int i = 1; i < n; i++) {
