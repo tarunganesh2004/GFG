@@ -29,13 +29,13 @@ class LinkedList:
 
     def reverse(self, head):
         prev = None
-        while head:
-            next_node = head.next
-            head.next = prev
-            prev = head
-            head = next_node
-        head=prev
-        return head
+        cur=head
+        while cur:
+            temp=cur.next
+            cur.next=prev
+            prev=cur
+            cur=temp
+        return prev
     
     def trim_zeros(self, head):
         while head is not None and head.val == 0:
@@ -79,22 +79,29 @@ class LinkedList:
         # return self.reverse(head)
 
     def addTwoNumbers(self,l1,l2):
-        # dummy=Node(0)
-        # cur=dummy
-        # total=carry=0
-        # while l1 or l2 or carry:
-        #     total=carry
-        #     if l1:
-        #         total+=l1.val
-        #         l1=l1.next
-        #     if l2:
-        #         total+=l2.val
-        #         l2=l2.next
-
-        #     carry=total//10
-        #     cur.next=Node(total%10) # type: ignore
-        #     cur=cur.next # type: ignore
-        # return cur.next
+        l1=self.reverse(l1)
+        l2=self.reverse(l2)
+        carry=0
+        temp=Node(0)
+        cur=temp
+        while l1 or l2 or carry:
+            ve=(l1.val if l1 else 0)+(l2.val if l2 else 0)+carry
+            cur.val=ve%10 # type: ignore
+            if ve>=10:
+                carry=1
+            else:
+                carry=0
+            
+            if l1:
+                l1=l1.next
+            if l2:
+                l2=l2.next
+            cur.next=Node(0)
+            cur=cur.next # type: ignore
+        temp=self.reverse(temp)
+        while temp.val==0: # type: ignore
+            temp=temp.next # type: ignore
+        return temp
         
 
 ll1 = LinkedList()
