@@ -75,7 +75,7 @@ class Solution:
         return self.count
     
     # other approach (similar to map)
-    def countKPaths(self,root,k):
+    def countKPaths(self,root,k): # O(n) time and O(h) space, h is the height of the tree
         prefix_sums={}
         return self.countPathsUtil(root,k,0,prefix_sums)
     
