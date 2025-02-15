@@ -7,6 +7,9 @@
 # Note: Multiple nodes can have the same data and the node values are always positive integers. Your code will be correct if the tree returned by deSerialize(serialize(input_tree)) is same as the input tree. Driver code will print the in-order traversal of the tree returned by deSerialize(serialize(input_tree)).
 
 
+from collections import deque
+
+
 class Node:
     def __init__(self, val):
         self.data = val
@@ -59,6 +62,22 @@ class Node:
             print(root.data, end=" ")
             self.inorder(root.right)
 
+    def serializeIterative(self,root):
+        if not root:
+            return []
+        q=deque([root])
+        res=[]
+        while q:
+            node=q.popleft()
+            res.append(node.data if node else 'N')
+            if node:
+                q.append(node.left)
+                q.append(node.right)
+        return res
+    
+    def deSerializeIterative(self,arr):
+        return self.buildTree(arr)
+
 
 # Testing the implementation
 arr = [1, 2, 3]
@@ -75,3 +94,7 @@ print("Serialized tree:", serialized_tree)
 deserialized_tree = root.deSerialize(serialized_tree) # type: ignore # type: ignore
 print("In-order traversal of the deserialized tree:")
 root.inorder(deserialized_tree) # type: ignore
+
+
+print(root.serializeIterative(root)) # type: ignore
+print(root.deSerializeIterative([1,2,3])) # type: ignore
