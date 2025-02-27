@@ -48,4 +48,26 @@ for query in queries:
     else:
         print(s.getMin())
 
-        
+
+class Solution2:
+    # another approach using only one stack
+    def __init__(self):
+        self.st=[]
+        self.minEle=None
+
+    def push(self,x):
+        self.minEle=min(x,self.minEle) if self.st else x # type: ignore
+        self.st.append(x)
+
+    def pop(self):
+        topEle=self.st.pop() if self.st else -1
+        if topEle==self.minEle:
+            self.minEle=min(self.st) if self.st else None
+
+        return topEle
+    
+    def peek(self):
+        return self.st[-1] if self.st else -1
+    
+    def getMin(self):
+        return self.minEle if self.st else -1
