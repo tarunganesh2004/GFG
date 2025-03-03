@@ -41,5 +41,36 @@ def optimized(arr,x):
             res=arr[i:j+1]
     return res
 
+# Another approach is to use deque and sliding window
+def longestSubarray(arr,x):
+    from collections import deque
+    max_q=deque()
+    min_q=deque()
+    i=0
+    max_len=0
+    res=[]
+
+    for j in range(len(arr)):
+        while max_q and arr[j]>max_q[-1]:
+            max_q.pop()
+        max_q.append(arr[j])
+        while min_q and arr[j]<min_q[-1]:
+            min_q.pop()
+        min_q.append(arr[j])
+
+        while max_q[0]-min_q[0]>x:
+            if max_q[0]==arr[i]:
+                max_q.popleft()
+            if min_q[0]==arr[i]:
+                min_q.popleft()
+            i+=1
+        if j-i+1>max_len:
+            max_len=j-i+1
+            res=arr[i:j+1]
+
+    return res
+
 print(bruteForce(arr,x))
 print(optimized(arr,x))
+
+print(longestSubarray(arr,x))
