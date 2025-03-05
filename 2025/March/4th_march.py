@@ -24,3 +24,25 @@ def optimized(arr):
         if i==length:
             length+=1
     return length
+
+# using sortedlist
+def optimized2(arr):
+    from sortedcontainers import SortedList
+    sl=SortedList()
+    for num in arr:
+        index=sl.bisect_left(num)
+        if index==len(sl):
+            sl.add(num)
+        else:
+            sl[index]=num
+    return len(sl)
+
+# using map 
+def optimized3(arr):
+    from sortedcontainers import SortedDict
+    sd=SortedDict()
+    for num in arr:
+        sd[num]=sd.get(num,0)+1
+        if num-1 in sd:
+            sd[num]=max(sd[num],sd[num-1]+1)
+    return max(sd.values())
