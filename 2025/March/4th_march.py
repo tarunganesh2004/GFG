@@ -46,3 +46,8 @@ def optimized3(arr):
         if num-1 in sd:
             sd[num]=max(sd[num],sd[num-1]+1)
     return max(sd.values())
+
+print(bruteForce(arr)) # 3
+print(optimized(arr)) # 3
+print(optimized2(arr)) # 3
+print(optimized3(arr)) # 3
