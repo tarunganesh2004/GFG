@@ -27,5 +27,17 @@ def memoi(n):
     memo=[-1 for i in range(n+1)]
     return f(n,memo)
 
+# dp
+def countWays(n):
+    dp=[0 for i in range(n+1)]
+    dp[0]=1
+    for i in range(1,n+1):
+        dp[i]+=dp[i-1]
+        if i>=2:
+            dp[i]+=dp[i-2]
+        if i>=3:
+            dp[i]+=dp[i-3]
+    return dp[n] 
+
 print(recursion(n)) # 1
 print(memoi(n)) # 1
