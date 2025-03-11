@@ -28,3 +28,4 @@ def memoi(n):
     return f(n,memo)
 
 print(recursion(n)) # 1
+print(memoi(n)) # 1
