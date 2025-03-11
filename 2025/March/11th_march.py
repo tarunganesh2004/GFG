@@ -41,3 +41,4 @@ def countWays(n):
 
 print(recursion(n)) # 1
 print(memoi(n)) # 1
+print(countWays(n)) # 1
