@@ -29,5 +29,17 @@ def memoi(cost):
     memo=[-1]*n
     return min(min_cost(len(cost)-1,cost,memo),min_cost(len(cost)-2,cost,memo))
 
+# dp
+def dp(cost):
+    n=len(cost)
+    dp=[0]*n
+    dp[0]=cost[0]
+    dp[1]=cost[1]
+    for i in range(2,n):
+        dp[i]=cost[i]+min(dp[i-1],dp[i-2])
+    return min(dp[n-1],dp[n-2])
+
+print(dp(cost)) # 15
+
 print(recursion(cost))
 print(memoi(cost)) # 15
