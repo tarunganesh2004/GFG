@@ -47,3 +47,4 @@ def dp(cap,wt,val):
 
 print(recursion(cap,wt,val)) # 3
 print(memoization(cap,wt,val)) # 3
+print(dp(cap,wt,val)) # 3
