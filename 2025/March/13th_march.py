@@ -33,3 +33,4 @@ def memoization(cap,wt,val):
     return knap(n-1,cap,wt,val,memo)
 
 print(recursion(cap,wt,val)) # 3
+print(memoization(cap,wt,val)) # 3
