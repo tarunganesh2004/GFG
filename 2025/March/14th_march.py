@@ -44,8 +44,23 @@ def countWaysMemo(coins,n,amount,memo={}):
     memo[(n,amount)]=include+exclude
     return memo[(n,amount)]
 
-
+# Instead of memoization,we can use lru_cache from functools to cache the results
+from functools import lru_cache  # noqa: E402
+def countWays(coins,amount):
+    coins=tuple(coins) # to make it hashable(bcz lru_cache requires hashable(ummutable) arguments)
+    @lru_cache(None)
+    def helper(n,remaining_amt):
+        if remaining_amt==0:
+            return 1
+        if remaining_amt<0 or n==0:
+            return 0
+        include=helper(n,remaining_amt-coins[n-1])
+        exclude=helper(n-1,remaining_amt)
+        return include+exclude
+    
+    return helper(len(coins),amount)
 
 print(bruteForce(coins,len(coins),amount)) # 4
 print(anotherWay(coins,amount)) # 4
 print(countWaysMemo(coins,len(coins),amount)) # 4
+print(countWays(coins,amount)) # 4
