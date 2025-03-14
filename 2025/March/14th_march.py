@@ -60,7 +60,18 @@ def countWays(coins,amount):
     
     return helper(len(coins),amount)
 
+# DP - Bottom Up
+def countWaysDp(coins,amount):
+    dp=[0]*(amount+1) # dp[i] will store the number of ways to make change for amount i
+    dp[0]=1 # there is 1 way to make change for amount 0
+    for coin in coins:
+        for i in range(coin,amount+1):
+            dp[i]+=dp[i-coin]
+
+    return dp[amount]
+
 print(bruteForce(coins,len(coins),amount)) # 4
 print(anotherWay(coins,amount)) # 4
 print(countWaysMemo(coins,len(coins),amount)) # 4
 print(countWays(coins,amount)) # 4
+print(countWaysDp(coins,amount)) # 4
