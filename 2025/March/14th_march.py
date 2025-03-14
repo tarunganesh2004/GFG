@@ -29,7 +29,23 @@ def anotherWay(coins,amount,index=0):
     return total_ways
 
 
+# Memoization - Top Down
+def countWaysMemo(coins,n,amount,memo={}):
+    if amount==0:
+        return 1
+    if amount<0 or n==0:
+        return 0
     
+    if (n,amount) in memo:
+        return memo[(n,amount)]
+    
+    include=countWaysMemo(coins,n,amount-coins[n-1],memo)
+    exclude=countWaysMemo(coins,n-1,amount,memo)
+    memo[(n,amount)]=include+exclude
+    return memo[(n,amount)]
+
+
 
 print(bruteForce(coins,len(coins),amount)) # 4
 print(anotherWay(coins,amount)) # 4
+print(countWaysMemo(coins,len(coins),amount)) # 4
