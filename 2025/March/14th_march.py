@@ -16,7 +16,20 @@ def bruteForce(coins,n,amount):
     exclude=bruteForce(coins,n-1,amount)
     return include+exclude
 
+# Recursion another way(without n)
+def anotherWay(coins,amount,index=0):
+    if amount==0:
+        return 1
+    if amount<0:
+        return 0
+    
+    total_ways=0
+    for i in range(index,len(coins)):
+        total_ways+=anotherWay(coins,amount-coins[i],i)
+    return total_ways
+
 
     
 
 print(bruteForce(coins,len(coins),amount)) # 4
+print(anotherWay(coins,amount)) # 4
