@@ -24,21 +24,21 @@ def min_jumpsRecur(i,arr): # O(n^n)
     return min_jumps
 
 # using lru_cache
-def min_jumpsMemoi(i,arr):
+def min_jumpsMemoi(arr):
     from functools import lru_cache
     arr = tuple(arr)
-    
+
     @lru_cache(None)
-    def helper(i,arr):
+    def helper(i):
         if i>=len(arr)-1:
             return 0
         if arr[i]==0:
             return float("inf")
         min_jumps=float("inf")
         for j in range(1,arr[i]+1):
-            min_jumps=min(min_jumps,1+helper(i+j,arr))
+            min_jumps=min(min_jumps,1+helper(i+j))
         return min_jumps
-    return helper(i,arr)
+    return helper(0)
 
 print(min_jumpsRecur(0,arr))
-print(min_jumpsMemoi(0,arr))
+print(min_jumpsMemoi(arr))
