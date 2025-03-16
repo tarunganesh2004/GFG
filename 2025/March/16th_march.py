@@ -56,6 +56,17 @@ def min_jumpsMemoiAnother(i,arr, memo=None):
     memo[i]=min_jumps
     return min_jumps
 
+# dp
+def min_jumpsDp(arr):
+    dp=[float("inf")]*len(arr)
+    dp[0]=0
+    for i in range(1,len(arr)):
+        for j in range(i):
+            if j+arr[j]>=i:
+                dp[i]=min(dp[i],dp[j]+1)
+    return dp[-1]
+
 print(min_jumpsRecur(0,arr))
 print(min_jumpsMemoi(arr))
 print(min_jumpsMemoiAnother(0,arr))
+print(min_jumpsDp(arr))
