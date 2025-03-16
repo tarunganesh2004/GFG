@@ -66,7 +66,31 @@ def min_jumpsDp(arr):
                 dp[i]=min(dp[i],dp[j]+1)
     return dp[-1]
 
+# O(n) time and O(1) space
+def min_jumpsGreedy(arr):
+    n=len(arr)
+    if n==0 or arr[0]==0:
+        return -1
+    
+    if n==1:
+        return 0
+    
+    jumps=0
+    curEnd=0
+    curFarthest=0
+    for i in range(n-1):
+        curFarthest=max(curFarthest,i+arr[i])
+        if i==curEnd:
+            jumps+=1
+            curEnd=curFarthest
+
+            if curEnd>=n-1:
+                return jumps
+            
+    return -1
+
 print(min_jumpsRecur(0,arr))
 print(min_jumpsMemoi(arr))
 print(min_jumpsMemoiAnother(0,arr))
 print(min_jumpsDp(arr))
+print(min_jumpsGreedy(arr))
