@@ -40,5 +40,19 @@ def min_jumpsMemoi(arr):
         return min_jumps
     return helper(0)
 
+# memoization
+def min_jumpsMemoiAnother(arr, memo={}):
+    if i>=len(arr)-1:
+        return 0
+    if arr[i]==0:
+        return float("inf")
+    if i in memo:
+        return memo[i]
+    min_jumps=float("inf")
+    for j in range(1,arr[i]+1):
+        min_jumps=min(min_jumps,1+min_jumpsMemoi(i+j,arr))
+    memo[i]=min_jumps
+    return min_jumps
+
 print(min_jumpsRecur(0,arr))
 print(min_jumpsMemoi(arr))
