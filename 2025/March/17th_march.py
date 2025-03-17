@@ -109,9 +109,20 @@ def subsetSumDp(arr,sum):
                 dp[i][j]=dp[i-1][j] or dp[i-1][j-arr[i-1]]
     return dp[n][sum]
 
+# space optimized dp, O(n*sum) time and O(sum) space
+def subsetSumDpSpaceOptimized(arr,sum):
+    n=len(arr)
+    dp=[False for _ in range(sum+1)]
+    dp[0]=True
+    for i in range(1,n+1):
+        for j in range(sum,0,-1):
+            if j>=arr[i-1]:
+                dp[j]=dp[j] or dp[j-arr[i-1]]
+    return dp[sum]
+
 print(bruteForce(arr,sum)) # True
 print(bruteForceMemoi(arr,sum)) # True
-
 print(subsetSumMemoi(arr,sum)) # True
 print(anotherWay(arr,sum)) # True
 print(subsetSumDp(arr,sum)) # True
+print(subsetSumDpSpaceOptimized(arr,sum)) # True
