@@ -42,5 +42,30 @@ def bruteForceMemoi(arr,sum):
     
     return helper(0,sum)
 
+# memoization
+def subsetSumMemoi(arr,sum):
+    def recur(cur_idx,cur_sum,memo):
+        if cur_sum==0:
+            return True
+        if cur_idx>=len(arr):
+            return False
+        if (cur_idx,cur_sum) in memo:
+            return memo[(cur_idx,cur_sum)]
+        # include next element
+        if cur_sum-arr[cur_idx]>=0:
+            if recur(cur_idx+1,cur_sum-arr[cur_idx],memo):
+                memo[(cur_idx,cur_sum)]=True
+                return True
+        # exclude next element
+        if recur(cur_idx+1,cur_sum,memo):
+            memo[(cur_idx,cur_sum)]=True # if we reach here, it means we have found a subset
+            return True
+        memo[(cur_idx,cur_sum)]=False
+        return False
+    
+    return recur(0,sum,{})
+
 print(bruteForce(arr,sum)) # True
 print(bruteForceMemoi(arr,sum)) # True
+
+print(subsetSumMemoi(arr,sum)) # True
