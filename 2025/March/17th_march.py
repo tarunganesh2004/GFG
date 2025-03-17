@@ -65,7 +65,35 @@ def subsetSumMemoi(arr,sum):
     
     return recur(0,sum,{})
 
+# another way of memoization
+def anotherWay(arr,sum):
+    n=len(arr)
+    memo=[[-1 for _ in range(sum+1)] for _ in range(n+1)]
+
+    def recurMemoi(cur_idx,cur_sum,memo):
+        if cur_sum==0:
+            return True
+        if cur_idx>=len(arr):
+            return False
+        if memo[cur_idx][cur_sum]!=-1:
+            return memo[cur_idx][cur_sum]
+        # include next element
+        if cur_sum-arr[cur_idx]>=0:
+            if recurMemoi(cur_idx+1,cur_sum-arr[cur_idx],memo):
+                memo[cur_idx][cur_sum]=True
+                return True
+        # exclude next element
+        if recurMemoi(cur_idx+1,cur_sum,memo):
+            memo[cur_idx][cur_sum]=True
+            return True
+        
+        memo[cur_idx][cur_sum]=False
+        return False
+    
+    return recurMemoi(0,sum,memo)
+
 print(bruteForce(arr,sum)) # True
 print(bruteForceMemoi(arr,sum)) # True
 
 print(subsetSumMemoi(arr,sum)) # True
+print(anotherWay(arr,sum)) # True
