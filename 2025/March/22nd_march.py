@@ -48,7 +48,6 @@ def brute_force_memoi(arr):
 
 # memoization
 def memoization(arr):
-    memo={}
     def recurMemo(cur_idx,n,memo):
         if cur_idx>=n:
             return 0
@@ -65,13 +64,19 @@ def memoization(arr):
         return memo[cur_idx]
     
     n=len(arr)
+    memo1={}
+    memo2={}
     # case 1 rob from house [0] to house [n-2](excluding last house)
-    case1=recurMemo(0,n-1,memo)
+    case1=recurMemo(0,n-1,memo1)
     # case 2 rob from house [1] to house [n-1](excluding first house)
-    case2=recurMemo(1,n,memo)
+    case2=recurMemo(1,n,memo2)
 
     return max(case1,case2)
 
 print(brute_force(arr))
 print(brute_force_memoi(arr)) # 3
 print(memoization(arr)) # 3
+
+arr1=[4,9,1,6,2,2,7,2,2,6]
+print(brute_force_memoi(arr1))
+print(memoization(arr1)) # 28
