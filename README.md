@@ -31,7 +31,7 @@ Each folder represents a **year**, and inside them, solutions are organized **mo
 If you have any improvements or alternative solutions, feel free to fork the repo and contribute!  
 
 📬 **Connect with me:**  
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](your-link)  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](www.linkedin.com/in/tarunganesh2004)  
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=flat&logo=github)](https://github.com/tarunganesh2004)  
 
 Happy Coding! 🚀✨
