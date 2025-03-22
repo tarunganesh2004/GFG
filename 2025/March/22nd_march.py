@@ -73,6 +73,27 @@ def memoization(arr):
 
     return max(case1,case2)
 
+# Dp
+def dp(arr):
+    n=len(arr)
+    dp=[0]*(n+2)
+    dp[n]=0
+    dp[n+1]=0
+
+    # case 1 rob from house [0] to house [n-2](excluding last house)
+    for i in range(n-1,-1,-1):
+        dp[i]=max(arr[i]+dp[i+2],dp[i+1])
+    
+    case1=dp[0]
+
+    # case 2 rob from house [1] to house [n-1](excluding first house)
+    for i in range(n-1,0,-1):
+        dp[i]=max(arr[i]+dp[i+2],dp[i+1])
+    
+    case2=dp[1]
+
+    return max(case1,case2)
+
 print(brute_force(arr))
 print(brute_force_memoi(arr)) # 3
 print(memoization(arr)) # 3
@@ -80,3 +101,4 @@ print(memoization(arr)) # 3
 arr1=[4,9,1,6,2,2,7,2,2,6]
 print(brute_force_memoi(arr1))
 print(memoization(arr1)) # 28
+print(dp(arr1)) # 28
