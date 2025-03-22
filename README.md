@@ -32,6 +32,6 @@ If you have any improvements or alternative solutions, feel free to fork the rep
 
 📬 **Connect with me:**  
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](your-link)  
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=flat&logo=github)](your-link)  
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=flat&logo=github)](https://github.com/tarunganesh2004)  
 
 Happy Coding! 🚀✨
