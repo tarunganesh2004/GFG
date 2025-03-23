@@ -102,8 +102,32 @@ def dp(digits):
 
     return dp[0]
 
+# space optimized dp
+def optimized(digits):
+    n=len(digits)
+    if n==0 or digits[0]=="0":
+        return 0
+    
+    prev1,prev2=1,0
+
+    for i in range(1,n+1):
+        cur=0
+        if digits[i-1]!="0":
+            cur+=prev1
+        
+        if i>1:
+            two_digit=(int(digits[i-2])*10)+int(digits[i-1])
+            if 10<=two_digit<=26:
+                cur+=prev2
+
+        prev2=prev1
+        prev1=cur
+
+    return prev1
+
 
 print(brute_force(digits)) # 3
 print(memoi_brute_force(digits)) # 3
 print(memoization(digits)) # 3
 print(dp(digits)) # 3
+print(optimized(digits)) # 3
