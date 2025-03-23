@@ -15,7 +15,7 @@ def brute_force(digits):
         
         if digits[cur_idx] == "0":  # If the digit is 0, it can't be decoded
             print(f"Reached 0 at index {cur_idx}. Returning 0.")
-            
+
         # Include current single digit
         print(f"Including {digits[cur_idx]} at index {cur_idx}")
         include = recur(cur_idx + 1, n)
@@ -59,7 +59,31 @@ def memoi_brute_force(digits):
     
     return recur(0,n)
 
+# memoization
+def memoization(digits):
+    def recurMemo(cur_idx,n,memo):
+        if cur_idx>=n:
+            return 1
+        
+        if cur_idx in memo:
+            return memo[cur_idx]
+        
+        if digits[cur_idx]=="0": # if the digit is 0, it can't be decoded
+            return 0
+        
+        # include current
+        include=recurMemo(cur_idx+1,n,memo)
+        # include current and next
+        include_2=0
+        if cur_idx+1<n and int(digits[cur_idx:cur_idx+2])<=26:
+            include_2=recurMemo(cur_idx+2,n,memo)
 
+        memo[cur_idx]=include+include_2
+        return memo[cur_idx]
+    
+    n=len(digits)
+    return recurMemo(0,n,{})
 
 print(brute_force(digits)) # 3
 print(memoi_brute_force(digits)) # 3
+print(memoization(digits)) # 3
