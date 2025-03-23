@@ -5,9 +5,6 @@ digits="123"
 
 # recursion
 def brute_force(digits):
-    # If the string contains '0', it can't be decoded
-    if "0" in digits:
-        return 0
 
     def recur(cur_idx, n):
         print(f"Calling recur({cur_idx}, {n})")  # Debug step
@@ -15,7 +12,10 @@ def brute_force(digits):
         if cur_idx >= n:
             print(f"Reached end at index {cur_idx}. Returning 1.")
             return 1
-
+        
+        if digits[cur_idx] == "0":  # If the digit is 0, it can't be decoded
+            print(f"Reached 0 at index {cur_idx}. Returning 0.")
+            
         # Include current single digit
         print(f"Including {digits[cur_idx]} at index {cur_idx}")
         include = recur(cur_idx + 1, n)
@@ -58,6 +58,8 @@ def memoi_brute_force(digits):
         return include+include_2
     
     return recur(0,n)
+
+
 
 print(brute_force(digits)) # 3
 print(memoi_brute_force(digits)) # 3
