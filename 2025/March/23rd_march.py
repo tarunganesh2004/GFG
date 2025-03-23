@@ -33,6 +33,28 @@ def brute_force(digits):
     n = len(digits)
     return recur(0, n)
 
+# using lru_cache
+def memoi_brute_force(digits):
+    from functools import lru_cache
 
+    # digits=tuple(digits)
+    n=len(digits)
+    @lru_cache(None)
+    def recur(cur_idx,n):
+        if cur_idx>=n:
+            return 1
+        
+        # include cur digit(single)
+        include=recur(cur_idx+1,n)
+
+        # include cur digit and next digit
+        include_2=0
+        if cur_idx+1<n and int(digits[cur_idx:cur_idx+2])<=26:
+            include_2=recur(cur_idx+2,n)
+
+        return include+include_2
+    
+    return recur(0,n)
 
 print(brute_force(digits)) # 3
+print(memoi_brute_force(digits)) # 3
