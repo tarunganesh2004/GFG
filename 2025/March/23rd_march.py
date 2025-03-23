@@ -84,6 +84,26 @@ def memoization(digits):
     n=len(digits)
     return recurMemo(0,n,{})
 
+# dp
+def dp(digits):
+    n=len(digits)
+    if n==0:
+        return 0
+    
+    dp=[0]*(n+1)
+    dp[n]=1 # base case
+
+    for i in range(n-1,-1,-1):
+        if digits[i]!="0":
+            dp[i]=dp[i+1]
+        
+        if i+1<n and int(digits[i:i+2])<=26:
+            dp[i]+=dp[i+2]
+
+    return dp[0]
+
+
 print(brute_force(digits)) # 3
 print(memoi_brute_force(digits)) # 3
 print(memoization(digits)) # 3
+print(dp(digits)) # 3
