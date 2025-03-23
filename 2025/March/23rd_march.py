@@ -44,6 +44,9 @@ def memoi_brute_force(digits):
         if cur_idx>=n:
             return 1
         
+        if digits[cur_idx]=="0": # if the digit is 0, it can't be decoded
+            return 0
+        
         # include cur digit(single)
         include=recur(cur_idx+1,n)
 
