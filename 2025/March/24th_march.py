@@ -59,8 +59,20 @@ def memoization(arr):
     
     return recurMemo(1,len(arr)-1,{})
 
-
+# dp
+def dp(arr):
+    n=len(arr)
+    dp=[[0]*n for _ in range(n)]
+    for l in range(2,n):  # noqa: E741
+        for i in range(1,n-l+1):
+            j=i+l-1
+            dp[i][j]=float("inf") # type: ignore
+            for k in range(i,j):
+                dp[i][j]=min(dp[i][j],dp[i][k]+dp[k+1][j]+(arr[i-1]*arr[k]*arr[j]))
+    
+    return dp[1][n-1]
 
 print(brute_force(arr)) # 20
 print(memoi_brute_force(arr)) # 20
 print(memoization(arr)) # 20
+print(dp(arr)) # 20
