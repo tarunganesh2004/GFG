@@ -19,4 +19,26 @@ def brute_force(arr):
     
     return recur(1,len(arr)-1)
 
+# using lru_cache
+def memoi_brute_force(arr):
+    from functools import lru_cache
+    @lru_cache(None)
+    def recur(start,end):
+        if start==end:
+            return 0
+        
+        min_cost=float("inf")
+        for k in range(start,end):
+            left=recur(start,k)
+            right=recur(k+1,end)
+            cost=left+right+(arr[start-1]*arr[k]*arr[end])
+            min_cost=min(min_cost,cost)
+        
+        return min_cost
+    
+    return recur(1,len(arr)-1)
+
+
+
 print(brute_force(arr)) # 20
+print(memoi_brute_force(arr)) # 20
