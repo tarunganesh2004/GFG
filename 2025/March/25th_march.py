@@ -125,6 +125,39 @@ def memoization(s):
     
     return recurMemo(0,len(s)-1,True,{})
 
+# dp
+def dp(s):
+    n=len(s)
+    dpT=[[0]*n for _ in range(n)]
+    dpF=[[0]*n for _ in range(n)]
+    for i in range(n):
+        if s[i]=="T":
+            dpT[i][i]=1
+        else:
+            dpF[i][i]=1
+    
+    for l in range(3,n+1):  # noqa: E741
+        for i in range(n-l+1):
+            j=i+l-1
+            for k in range(i+1,j,2):
+                lt=dpT[i][k-1]
+                lf=dpF[i][k-1]
+                rt=dpT[k+1][j]
+                rf=dpF[k+1][j]
+                
+                if s[k]=="&":
+                    dpT[i][j]+=lt*rt
+                    dpF[i][j]+=lt*rf+lf*rt+lf*rf
+                elif s[k]=="|":
+                    dpT[i][j]+=lt*rt+lt*rf+lf*rt
+                    dpF[i][j]+=lf*rf
+                elif s[k]=="^":
+                    dpT[i][j]+=lt*rf+lf*rt
+                    dpF[i][j]+=lt*rt+lf*rf
+    
+    return dpT[0][n-1]
+
 print(brute_force(s)) # 4
 print(memoi_brute_force(s)) # 4
 print(memoization(s)) # 4
+print(dp(s)) # 4
