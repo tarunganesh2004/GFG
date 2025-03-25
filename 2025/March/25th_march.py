@@ -82,5 +82,7 @@ def memoi_brute_force(s):
     
     return recur(0,len(s)-1,True)
 
+
+
 print(brute_force(s)) # 4
 print(memoi_brute_force(s)) # 4
