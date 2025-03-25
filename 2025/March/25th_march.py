@@ -41,4 +41,46 @@ def brute_force(s):
     
     return recur(s,0,len(s)-1,True)
 
+# using lru_cache
+def memoi_brute_force(s):
+    from functools import lru_cache
+    @lru_cache(None)
+    def recur(i,j,isTrue):
+        if i>j:
+            return False
+        
+        if i==j:
+            if isTrue:
+                return s[i]=="T"
+            else:
+                return s[i]=="F"
+        
+        ans=0
+        for k in range(i+1,j,2):
+            lt= recur(i,k-1,True)
+            lf= recur(i,k-1,False)
+            rt= recur(k+1,j,True)
+            rf= recur(k+1,j,False)
+            
+            if s[k]=="&":
+                if isTrue:
+                    ans+=lt*rt
+                else:
+                    ans+=lt*rf+lf*rt+lf*rf
+            elif s[k]=="|":
+                if isTrue:
+                    ans+=lt*rt+lt*rf+lf*rt
+                else:
+                    ans+=lf*rf
+            elif s[k]=="^":
+                if isTrue:
+                    ans+=lt*rf+lf*rt
+                else:
+                    ans+=lt*rt+lf*rf
+        
+        return ans
+    
+    return recur(0,len(s)-1,True)
+
 print(brute_force(s)) # 4
+print(memoi_brute_force(s)) # 4
