@@ -1,0 +1,44 @@
+# Boolean Parenthesization Problem
+
+s='T|T&F^T'
+
+# brute force
+def brute_force(s):
+    def recur(s,i,j,isTrue):
+        if i>j:
+            return False
+        
+        if i==j:
+            if isTrue:
+                return s[i]=="T"
+            else:
+                return s[i]=="F"
+        
+        ans=0
+        for k in range(i+1,j,2):
+            lt= recur(s,i,k-1,True)
+            lf= recur(s,i,k-1,False)
+            rt= recur(s,k+1,j,True)
+            rf= recur(s,k+1,j,False)
+            
+            if s[k]=="&":
+                if isTrue:
+                    ans+=lt*rt
+                else:
+                    ans+=lt*rf+lf*rt+lf*rf
+            elif s[k]=="|":
+                if isTrue:
+                    ans+=lt*rt+lt*rf+lf*rt
+                else:
+                    ans+=lf*rf
+            elif s[k]=="^":
+                if isTrue:
+                    ans+=lt*rf+lf*rt
+                else:
+                    ans+=lt*rt+lf*rf
+        
+        return ans
+    
+    return recur(s,0,len(s)-1,True)
+
+print(brute_force(s)) # 4
