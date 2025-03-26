@@ -30,6 +30,26 @@ def memoi_recur(s):
     
     return recur(s)
 
+# memoization
+def memoization(s):
+    memo={}
+    def recurMemo(s):
+        if s in memo:
+            return memo[s]
+        
+        if s=="":
+            return True
+        
+        for i in range(1,len(s)+1):
+            if s[:i] in dict and recurMemo(s[i:]):
+                memo[s]=True
+                return True
+        
+        memo[s]=False
+        return False
+    
+    return recurMemo(s)
 
 print(recur(s))
 print(memoi_recur(s))
+print(memoization(s))
