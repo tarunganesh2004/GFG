@@ -50,6 +50,20 @@ def memoization(s):
     
     return recurMemo(s)
 
+# using dp
+def dp(s):
+    dp=[False]*(len(s)+1)
+    dp[0]=True
+    
+    for i in range(1,len(s)+1):
+        for j in range(i):
+            if dp[j] and s[j:i] in dict:
+                dp[i]=True
+                break
+    
+    return dp[-1]
+
 print(recur(s))
 print(memoi_recur(s))
 print(memoization(s))
+print(dp(s))
