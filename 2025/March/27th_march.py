@@ -15,6 +15,22 @@ def brute_force(arr,dep):
         res=max(res,count)
     return res
 
+# using sorting
+def minPlatformSort(arr,dep):
+    n=len(arr)
+    res=0
+    arr.sort()
+    dep.sort()
 
+    j=0
+    cnt=0
+    for i in range(n):
+        while j<n and dep[j]<arr[i]:
+            cnt-=1
+            j+=1
+        cnt+=1
+        res=max(res,cnt)
+    return res
 
 print(brute_force(arr,dep)) # 3
+print(minPlatformSort(arr,dep)) # 3
