@@ -32,5 +32,22 @@ def minPlatformSort(arr,dep):
         res=max(res,cnt)
     return res
 
+# optimized O(n)
+def optimized(arr,dep):
+    n=len(arr)
+    res=0
+    maxDep=max(dep)
+    v=[0]*(maxDep+2)
+    for i in range(n):
+        v[arr[i]]+=1
+        v[dep[i]+1]-=1
+
+    count=0
+    for i in range(maxDep+2):
+        count+=v[i]
+        res=max(res,count)
+    return res
+
 print(brute_force(arr,dep)) # 3
 print(minPlatformSort(arr,dep)) # 3
+print(optimized(arr,dep)) # 3
