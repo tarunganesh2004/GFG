@@ -20,5 +20,16 @@ def find_pythagorean_triplet(arr):
             
     return False
 
+# other way
+def another_way(arr):
+    squared= [x**2 for x in arr]
+    squared_set = set(squared)
+    n=len(squared)
+    for i in range(n):
+        for j in range(i+1, n):
+            if squared[i] + squared[j] in squared_set:
+                return True
+    return False
+
 print(find_pythagorean_triplet(arr))
 
