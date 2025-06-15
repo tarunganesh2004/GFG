@@ -1,8 +1,5 @@
 # Symmetric Tree 
 
-from re import L
-
-
 class Node:
     def __init__(self, data):
         self.data = data
