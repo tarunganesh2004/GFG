@@ -5,7 +5,7 @@ arr=[2,2,2,2]
 k=0
 
 def minimumCoins(arr,k):
-    from bisect import bisect_right
+    from bisect import bisect_right  # noqa: F401
     import bisect
     arr.sort()
     n=len(arr)
