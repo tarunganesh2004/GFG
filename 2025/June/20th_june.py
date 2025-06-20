@@ -10,7 +10,8 @@ def groupBalls(arr, k):
         return False  # Cannot group if total balls are not divisible by k
     
     arr.sort()
-    d=dict(Counter(list(arr)))
+    # d=dict(Counter(list(arr)))
+    d=Counter(arr)
 
     for item in arr:
         if d[item]==0:
