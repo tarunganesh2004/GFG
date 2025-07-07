@@ -4,7 +4,9 @@ a=[3,2]
 b=[1,4]
 k=2
 
-def maxSumCombination(a, b, k):
+def maxSumCombination(a, b, k): # O(k log k) TC and O(k) SC
+    # we can use a max heap to find the k largest sums
+    # of pairs (a[i], b[j]) where i and j are indices in a
     import heapq
     a.sort(reverse=True)
     b.sort(reverse=True)
