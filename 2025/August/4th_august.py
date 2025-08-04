@@ -45,3 +45,33 @@ def optimized(mat):
 
 print(bruteForce(mat))
 print(optimized(mat))
+
+"""
+Java Snippet:
+public static int maxRectangle(int[][] mat) {
+        int n = mat.length;
+        int m = mat[0].length;
+        int maxSum = Integer.MIN_VALUE;
+        for (int top = 0; top < n; top++) {
+            int[] temp = new int[m];
+            for (int bottom = top; bottom < n; bottom++) {
+                for (int col = 0; col < m; col++) {
+                    temp[col] += mat[bottom][col];
+                }
+                int curMax = kadane(temp);
+                maxSum = Math.max(maxSum, curMax);
+            }
+        }
+        return maxSum;
+    }
+
+    public static int kadane(int[] arr) {
+        int maxSoFar = arr[0];
+        int maxEndingHere = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            maxEndingHere = Math.max(arr[i], maxEndingHere + arr[i]);
+            maxSoFar = Math.max(maxSoFar, maxEndingHere);
+        }
+        return maxSoFar;
+    }
+"""
