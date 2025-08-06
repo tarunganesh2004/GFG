@@ -9,7 +9,7 @@ def romanToDecimal(s):
     while i<len(s):
         if i+1<len(s) and map[s[i]]<map[s[i+1]]:
             res+=map[s[i+1]]-map[s[i]]
-            i+=1
+            i+=2 # Skip both
         else:
             res+=map[s[i]]
         i+=1
