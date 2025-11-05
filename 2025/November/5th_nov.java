@@ -1,5 +1,5 @@
 // Get Minimum Squares
-import java.util.*;
+
 
 class Solution {
     public int minSquares(int n) {
