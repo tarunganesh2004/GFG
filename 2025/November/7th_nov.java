@@ -1,5 +1,5 @@
 // Weighted Job Scheduling Problem in Java
-
+import java.util.*;
 class Solution {
     public int maxProfit(int[][] jobs) {
         // code here
